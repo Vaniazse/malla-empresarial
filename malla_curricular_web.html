@@ -1,0 +1,58 @@
+<!-- (contenido anterior intacto) -->
+
+  <div class="ciclo">
+    <h2>📘 Ciclo 3</h2>
+    <div class="cursos">
+      <div class="curso bloqueado" data-id="MATH1101A" data-req="MATH1003">
+        <h3>📐 Cálculo 1</h3>
+        <p><span class="icono">📚</span> Créditos: 5</p>
+        <p><span class="icono">⏱</span> HT: 4 | HP: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="ISOF1202A">
+        <h3>💾 Gestión de Base de Datos</h3>
+        <p><span class="icono">📚</span> Créditos: 3</p>
+        <p><span class="icono">⏱</span> HT: 2 | HL: 2</p>
+      </div>
+      <div class="curso bloqueado" data-id="STAT1203A" data-req="MATH1003">
+        <h3>📊 Probabilidad y Estadística</h3>
+        <p><span class="icono">📚</span> Créditos: 5</p>
+        <p><span class="icono">⏱</span> HT: 4 | HP: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="IDIO1401">
+        <h3>🗣️ Pre Beginner 1</h3>
+        <p><span class="icono">📚</span> Créditos: 1</p>
+        <p><span class="icono">⏱</span> HT: 1</p>
+      </div>
+      <div class="curso bloqueado" data-id="LENG1003" data-req="LENG1002">
+        <h3>📝 Comunicación 3</h3>
+        <p><span class="icono">📚</span> Créditos: 5</p>
+        <p><span class="icono">⏱</span> HT: 4 | HP: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="INFO1120A">
+        <h3>💻 Herramientas Informáticas</h3>
+        <p><span class="icono">📚</span> Créditos: 2</p>
+        <p><span class="icono">⏱</span> HT: 2</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const cursos = document.querySelectorAll('.curso');
+
+  cursos.forEach(curso => {
+    curso.addEventListener('click', () => {
+      if (curso.classList.contains('aprobado')) return;
+
+      curso.classList.remove('habilitado', 'bloqueado', 'en-curso');
+      curso.classList.add('aprobado');
+
+      const id = curso.dataset.id;
+      document.querySelectorAll(`[data-req="${id}"]`).forEach(dep => {
+        if (dep.classList.contains('bloqueado')) {
+          dep.classList.remove('bloqueado');
+          dep.classList.add('habilitado');
+        }
+      });
+    });
+  });
+</script>

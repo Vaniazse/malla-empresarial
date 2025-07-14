@@ -1,0 +1,53 @@
+<!-- (contenido anterior intacto) -->
+
+  <div class="ciclo">
+    <h2>📘 Ciclo 2</h2>
+    <div class="cursos">
+      <div class="curso bloqueado" data-id="MATH1003" data-req="MATH1002">
+        <h3>📐 Matemática Básica para Ingeniería</h3>
+        <p><span class="icono">📚</span> Créditos: 5</p>
+        <p><span class="icono">⏱</span> HT: 4 | HP: 2</p>
+      </div>
+      <div class="curso bloqueado" data-id="LENG1002" data-req="LENG1001">
+        <h3>📝 Comunicación 2</h3>
+        <p><span class="icono">📚</span> Créditos: 5</p>
+        <p><span class="icono">⏱</span> HT: 4 | HP: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="CONT1208">
+        <h3>📊 Gestión Contable</h3>
+        <p><span class="icono">📚</span> Créditos: 3</p>
+        <p><span class="icono">⏱</span> HT: 2 | HP: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="HUMA1306">
+        <h3>🌎 Ciudadanía Global</h3>
+        <p><span class="icono">📚</span> Créditos: 2</p>
+        <p><span class="icono">⏱</span> HT: 2</p>
+      </div>
+      <div class="curso habilitado" data-id="INVE1101">
+        <h3>📖 Metodología Universitaria</h3>
+        <p><span class="icono">📚</span> Créditos: 3</p>
+        <p><span class="icono">⏱</span> HT: 2 | HP: 2</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const cursos = document.querySelectorAll('.curso');
+
+  cursos.forEach(curso => {
+    curso.addEventListener('click', () => {
+      if (curso.classList.contains('aprobado')) return;
+
+      curso.classList.remove('habilitado', 'bloqueado', 'en-curso');
+      curso.classList.add('aprobado');
+
+      const id = curso.dataset.id;
+      document.querySelectorAll(`[data-req="${id}"]`).forEach(dep => {
+        if (dep.classList.contains('bloqueado')) {
+          dep.classList.remove('bloqueado');
+          dep.classList.add('habilitado');
+        }
+      });
+    });
+  });
+</script>
